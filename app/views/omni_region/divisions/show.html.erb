@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @division.type %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= link_to @division.parent.to_s, divisions_path(q: {parent_id_eq: @division.parent_id}) %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @division.code %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @division.name %>
+</p>
+
+<p>
+  <strong>Children</strong>
+  <%= link_to @division.children.count, divisions_path(q: {parent_id_eq: @division.id}) %>
+</p>
+
+<%= link_to 'Back', divisions_path %>

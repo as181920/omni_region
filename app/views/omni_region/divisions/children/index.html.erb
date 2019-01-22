@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Children</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Parent</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Children</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @children.each do |division| %>
+      <tr>
+        <td><%= division.type %></td>
+        <td><%= division.code %></td>
+        <td><%= division.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
