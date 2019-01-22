@@ -5,15 +5,17 @@
 source data: https://github.com/modood/Administrative-divisions-of-China
 
 Load data:
-country = OmniRegion::Country.find_or_create_by code: 156, name: '中国' # country code use ISO 3166
+require 'csv' 
+data_file_path = "/home/andersen/public_projects/Administrative-divisions-of-China/dist" 
+country = OmniRegion::Country.find_or_create_by code: 156, name: '中国'
 
-x=CSV.read "path/Administrative-divisions-of-China/dist/provinces.csv" 
+x=CSV.read "#{data_file_path}/provinces.csv" 
 x[1..-1].each{|code,name| country.provinces.create code: code, name: name}
 
-x=CSV.read "path/Administrative-divisions-of-China/dist/cities.csv"
+x=CSV.read "#{data_file_path}/cities.csv" 
 x[1..-1].each{|code,name, pcode| OmniRegion::City.find_or_create_by! code: code, name: name, province: OmniRegion::Province.find_by(code: pcode)}
 
-x=CSV.read "path/Administrative-divisions-of-China/dist/areas.csv"
+x=CSV.read "#{data_file_path}/areas.csv" 
 x[1..-1].each{|code,name,ccode, pcode| OmniRegion::District.find_or_create_by! code: code, name: name, city: OmniRegion::City.find_by(code: ccode)}
 
 ## Installation
