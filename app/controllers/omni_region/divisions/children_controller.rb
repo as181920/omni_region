@@ -5,7 +5,7 @@ module OmniRegion
     before_action :set_division
 
     def index
-      @children = @division.children
+      @children = @division.children.order(code: :asc)
     end
 
     private
