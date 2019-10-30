@@ -13,7 +13,7 @@ module OmniRegion
     end
 
     def province_options_of_division(division_code)
-      division = OmniRegion::Division.find_by(code: division_code)
+      division = OmniRegion::Division.find_by(code: (division_code.presence || 156))
       case division&.type
       when "OmniRegion::District", "OmniRegion::City"
         options_for_select(division.country.provinces.order(code: :asc).pluck(:name, :code), division.province.code)
