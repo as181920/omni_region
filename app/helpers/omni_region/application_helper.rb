@@ -51,5 +51,11 @@ module OmniRegion
         options_for_select([], nil)
       end
     end
+
+    def full_name_of_division(division_code)
+      division = OmniRegion::Division.find_by(code: division_code)
+      name = division&.name.to_s
+      division&.parent&.parent ? name.prepend("#{full_name_of_division(division.parent.code)}-") : name
+    end
   end
 end
