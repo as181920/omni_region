@@ -52,10 +52,11 @@ module OmniRegion
       end
     end
 
-    def full_name_of_division(division_code)
+    def full_name_of_division(division_code, options={})
       division = OmniRegion::Division.find_by(code: division_code)
       name = division&.name.to_s
-      division&.parent&.parent ? name.prepend("#{full_name_of_division(division.parent.code)}-") : name
+      seperator = options[:seperator] || '-'
+      division&.parent&.parent ? name.prepend("#{full_name_of_division(division.parent.code, options)}#{seperator}") : name
     end
   end
 end
