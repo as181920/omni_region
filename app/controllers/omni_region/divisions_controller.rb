@@ -1,5 +1,3 @@
-require_dependency "omni_region/application_controller"
-
 module OmniRegion
   class DivisionsController < ApplicationController
     before_action :set_division, only: [:show, :edit, :update, :destroy]

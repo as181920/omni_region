@@ -1,5 +1,3 @@
-require_dependency "omni_region/application_controller"
-
 module OmniRegion
   class Divisions::ChildrenController < ApplicationController
     before_action :set_division
