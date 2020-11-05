@@ -16,7 +16,7 @@ x=CSV.read "#{data_file_path}/cities.csv"
 x[1..-1].each{|code,name, pcode| OmniRegion::City.find_or_create_by! code: code, name: name, province: OmniRegion::Province.find_by(code: pcode)}
 
 x=CSV.read "#{data_file_path}/areas.csv"
-x[1..-1].each{|code,name,ccode, pcode| OmniRegion::District.find_or_create_by! code: code, name: name, city: OmniRegion::City.find_by(code: ccode) }
+x[1..-1].each{|code,name,ccode, pcode| OmniRegion::District.find_or_initialize_by(code: code).update!(name: name, city: OmniRegion::City.find_by(code: ccode)) }
 
 ## Installation
 Add this line to your application's Gemfile:
