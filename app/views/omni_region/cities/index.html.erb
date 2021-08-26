@@ -1,0 +1,49 @@
+<style>
+  ul.pagination>li {display: inline-block;}
+  div.form-group {display: inline-block;}
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<div>
+  <%= search_form_for @q, url: url_for(), class: "common_search_form form-inline" do |form| %>
+    <div class="form-group">
+      <label for="q_code_eq">Code</label>
+      <%= form.search_field :code_eq, class: "form-control", placeholder: "" %>
+    </div>
+    <div class="form-group">
+      <label for="q_name_cont">Name</label>
+      <%= form.search_field :name_cont, class: "form-control", placeholder: "" %>
+    </div>
+    <div class="form-group">
+      <label>&nbsp;</label>
+      <%= form.button class: "btn btn-primary form-control" do %>
+        <i class="fas fa-search"></i> 搜索
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Code</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= city.type %></td>
+        <td><%= city.code %></td>
+        <td><%= city.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= paginate @cities %>

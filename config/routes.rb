@@ -4,4 +4,8 @@ OmniRegion::Engine.routes.draw do
       resources :children, only: [:index]
     end
   end
+
+  resources :provinces, only: [:index]
+  resources :cities, only: [:index]
+  resources :districts, only: [:index]
 end
