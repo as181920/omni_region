@@ -3,7 +3,9 @@ module OmniRegion
     before_action :set_division, only: [:show, :edit, :update, :destroy]
 
     def index
-      @q = Division.ransack(params[:q])
+      @q = Division
+        .then { |scope| params.dig(:q, :s).present? ? scope : scope.order(name: :asc) }
+        .ransack(params[:q])
       @divisions = @q.result.page(params[:page]).per(params[:per] || 25)
     end
 
@@ -11,6 +13,7 @@ module OmniRegion
     end
 
     private
+
       def set_division
         @division = Division.find_by(code: params[:code])
       end

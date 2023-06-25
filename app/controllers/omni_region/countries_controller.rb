@@ -1,10 +1,10 @@
 module OmniRegion
-  class ProvincesController < ApplicationController
+  class CountriesController < ApplicationController
     def index
-      @q = Province
+      @q = Country
         .then { |scope| params.dig(:q, :s).present? ? scope : scope.order(name: :asc) }
         .ransack(params[:q])
-      @provinces = @q.result.page(params[:page]).per(params[:per] || 10)
+      @countries = @q.result.page(params[:page]).per(params[:per] || 25)
     end
   end
 end

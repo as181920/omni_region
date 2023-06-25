@@ -5,6 +5,7 @@ OmniRegion::Engine.routes.draw do
     end
   end
 
+  resources :countries, only: [:index]
   resources :provinces, only: [:index]
   resources :cities, only: [:index]
   resources :districts, only: [:index]
