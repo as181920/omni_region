@@ -28,7 +28,50 @@ x=CSV.read "#{data_file_path}/areas.csv"
 x[1..-1].each{|code,name,ccode, pcode| OmniRegion::District.find_or_initialize_by(code: code).update!(name: name, city: OmniRegion::City.find_by(code: ccode)) }
 ```
 
-### Load maxmind geolite-city data
+### Load https://github.com/dr5hn/countries-states-cities-database
+```ruby
+require "yaml"
+require "active_support/all"
+data = YAML.load_file "/home/andersen/public_projects/countries-states-cities-database/yml/countries+states+cities.yml"
+
+data["country_state_city"].each do |c_data|
+  country = OmniRegion::Country.find_or_create_by!(name: c_data["name"], code: c_data["iso2"])
+
+  c_data["states"].each do |p_data|
+    province = country.provinces.find_or_create_by!(name: p_data["name"], code: [country.code, p_data["state_code"]].join("-"))
+
+    p_data["cities"].each do |city_data|
+      city = province.cities.find_or_create_by!(name: city_data["name"], code: city_data["id"])
+    end
+  end
+end;puts
+```
+
+### Load https://github.com/zepc007/GlobalCityData/blob/main/data_region.json
+```ruby
+require "json"
+require "active_support/all"
+data = JSON.load_file "/home/andersen/Nextcloud/Documents/OpenData/GlobalCityData/data_region.json"
+
+data.each do |country_name, c_data|
+  country = OmniRegion::Country.find_or_create_by!(name: country_name, code: country_name)
+
+  Array(c_data["children"]).compact_blank.each do |p_data|
+    province = country.provinces.find_or_create_by!(name: p_data["label_en"], code: [country_name, p_data["label_en"]].join("-"))
+
+    Array(p_data["children_en"]).compact_blank.each do |city_name|
+      city = province.cities.find_or_create_by!(name: city_name, code: [country_name, p_data["label_en"], city_name].join("-"))
+    rescue => e
+      puts country.name
+      puts province.name
+      puts city_name
+      raise
+    end
+  end
+end
+```
+
+### Load maxmind geolite-city data, Not recommended yet!!
 ```ruby
 require "csv"
 require "active_support/all"
@@ -75,6 +118,10 @@ rescue
   pp row
   raise
 end
+
+OmniRegion::Country.find_by(name: "Taiwan")&.update(name: "Taiwan, China")
+OmniRegion::Country.find_by(name: "Hong Kong")&.update(name: "Hong Kong, China")
+OmniRegion::Country.find_by(name: "Macao")&.update(name: "Macao, China")
 ```
 
 ## Contributing
