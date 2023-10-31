@@ -1,0 +1,21 @@
+---
+en:
+  omni_region:
+    engine: "Omni region"
+    search: "Search"
+  activerecord:
+    models:
+      omni_region/division: "Division"
+    attributes:
+      omni_region/division:
+        id: "ID"
+        type: "Level"
+        parent: "Parent"
+        children: "Children"
+        code: "Code"
+        name: "Name"
+      omni_region/division/type:
+        OmniRegion::Country: "Country"
+        OmniRegion::Province: "Province"
+        OmniRegion::City: "City"
+        OmniRegion::District: "District"

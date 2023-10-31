@@ -1,0 +1,21 @@
+---
+zh-CN:
+  omni_region:
+    engine: "通用地址库"
+    search: "检索"
+  activerecord:
+    models:
+      omni_region/division: "行政区划"
+    attributes:
+      omni_region/division:
+        id: "ID"
+        type: "级别"
+        parent: "上级行政区"
+        children: "下级行政区"
+        code: "地区编码"
+        name: "名称"
+      omni_region/division/type:
+        OmniRegion::Country: "国家"
+        OmniRegion::Province: "省份"
+        OmniRegion::City: "城市"
+        OmniRegion::District: "区县"

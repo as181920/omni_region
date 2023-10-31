@@ -5,31 +5,21 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1><%= link_to "Divisions", divisions_path %></h1>
+<h1><%= link_to OmniRegion::Division.model_name.human, divisions_path %></h1>
 
 <div>
   <%= search_form_for @q, url: url_for(), class: "common_search_form form-inline" do |form| %>
     <div class="form-group">
-      <label for="q_id_eq">ID</label>
-      <%= form.search_field :id_eq, class: "form-control", placeholder: "" %>
-    </div>
-    <div class="form-group">
-      <label for="q_parent_id_eq">ParentID</label>
-      <%= form.search_field :parent_id_eq, class: "form-control", placeholder: "" %>
-    </div>
-    <div class="form-group">
-      <label for="q_code_eq">Code</label>
-      <%= form.search_field :code_eq, class: "form-control", placeholder: "" %>
-    </div>
-    <div class="form-group">
-      <label for="q_name_cont">Name</label>
+      <%= form.label :name_cont, OmniRegion::Division.human_attribute_name(:name) %>
       <%= form.search_field :name_cont, class: "form-control", placeholder: "" %>
     </div>
     <div class="form-group">
+      <%= form.label :code_eq, OmniRegion::Division.human_attribute_name(:code) %>
+      <%= form.search_field :code_eq, class: "form-control", placeholder: "" %>
+    </div>
+    <div class="form-group">
       <label>&nbsp;</label>
-      <%= form.button class: "btn btn-primary form-control" do %>
-        <i class="fas fa-search"></i> 搜索
-      <% end %>
+      <%= form.button t("omni_region.search"), class: "" %>
     </div>
   <% end %>
 </div>
@@ -38,21 +28,21 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
-      <th>Parent</th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Children</th>
+      <%= tag.th OmniRegion::Division.human_attribute_name(:type) %>
+      <%= tag.th OmniRegion::Division.human_attribute_name(:name) %>
+      <%= tag.th OmniRegion::Division.human_attribute_name(:code) %>
+      <%= tag.th OmniRegion::Division.human_attribute_name(:parent) %>
+      <%= tag.th OmniRegion::Division.human_attribute_name(:children) %>
     </tr>
   </thead>
 
   <tbody>
     <% @divisions.each do |division| %>
       <tr>
-        <td><%= division.type %></td>
-        <td><%= link_to division.parent.to_s, divisions_path(q: {parent_id_eq: division.parent_id}) %></td>
-        <td><%= link_to division.code, division_path(division) %></td>
+        <td><%= OmniRegion::Division.human_attribute_name("type.#{division.type}") %></td>
         <td><%= link_to division.name, division_path(division) %></td>
+        <td><%= link_to division.code, division_path(division) %></td>
+        <td><%= link_to division.parent.to_s, divisions_path(q: {parent_id_eq: division.parent_id}) %></td>
         <td><%= link_to division.children.count, divisions_path(q: {parent_id_eq: division.id}) %></td>
       </tr>
     <% end %>

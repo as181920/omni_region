@@ -3,6 +3,14 @@ module OmniRegion
     validates_presence_of :type, :name
     validates :code, presence: true, uniqueness: true
 
+    def self.ransackable_attributes(_auth_object = nil)
+      %w[id parent_id code name]
+    end
+
+    def self.ransackable_associations(_auth_object = nil)
+      %w[parent]
+    end
+
     def to_param
       code
     end
