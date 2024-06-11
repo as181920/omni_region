@@ -3,6 +3,8 @@ zh-CN:
   omni_region:
     engine: "通用地址库"
     search: "检索"
+    all_regions: "所有地区"
+    nationwide: "全国"
   activerecord:
     models:
       omni_region/division: "行政区划"

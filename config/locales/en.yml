@@ -3,6 +3,8 @@ en:
   omni_region:
     engine: "Omni region"
     search: "Search"
+    all_regions: "All regions"
+    nationwide: "Nationwide"
   activerecord:
     models:
       omni_region/division: "Division"
