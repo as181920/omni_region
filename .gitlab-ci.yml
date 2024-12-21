@@ -16,7 +16,7 @@ rubocop:
 test:
   stage: test
   only:
-    - main
+    - master
   script:
     - bundle install -j $(nproc)
     - ln -s /home/gitlab-runner/shared/configs/as_projects/omni_engines/omni_region/database.yml ./test/dummy/config/database.yml
