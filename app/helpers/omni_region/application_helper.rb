@@ -1,19 +1,25 @@
 module OmniRegion
   module ApplicationHelper
     def province_options_for_select(country_code, selected_code)
-      options_for_select(OmniRegion::Province.where(parent_id: OmniRegion::Country.find_by(code: country_code || 156)&.id).order(code: :asc).pluck(:name, :code), selected_code)
+      options_for_select(
+        OmniRegion::Province.where(parent_id: OmniRegion::Country.find_by(code: country_code || 156)&.id).order(code: :asc).pluck(:name,
+          :code), selected_code
+      )
     end
 
     def city_options_for_select(province_code, selected_code)
-      options_for_select(OmniRegion::City.where(parent_id: OmniRegion::Province.find_by(code: province_code)&.id).order(code: :asc).pluck(:name, :code), selected_code)
+      options_for_select(
+        OmniRegion::City.where(parent_id: OmniRegion::Province.find_by(code: province_code)&.id).order(code: :asc).pluck(:name, :code), selected_code
+      )
     end
 
     def district_options_for_select(city_code, selected_code)
-      options_for_select(OmniRegion::District.where(parent_id: OmniRegion::City.find_by(code: city_code)&.id).order(code: :asc).pluck(:name, :code), selected_code)
+      options_for_select(OmniRegion::District.where(parent_id: OmniRegion::City.find_by(code: city_code)&.id).order(code: :asc).pluck(:name, :code),
+        selected_code)
     end
 
-    def province_options_of_division(division_code)
-      division = OmniRegion::Division.find_by(code: (division_code.presence || 156))
+    def province_options_of_division(division_code) # rubocop:disable Metrics/MethodLength
+      division = OmniRegion::Division.find_by(code: division_code.presence || 156)
       case division&.type
       when "OmniRegion::District", "OmniRegion::City"
         options_for_select(division.country.provinces.order(code: :asc).pluck(:name, :code), division.province.code)
@@ -26,7 +32,7 @@ module OmniRegion
       end
     end
 
-    def city_options_of_division(division_code)
+    def city_options_of_division(division_code) # rubocop:disable Metrics/MethodLength
       division = OmniRegion::Division.find_by(code: division_code)
       case division&.type
       when "OmniRegion::District"
@@ -52,10 +58,10 @@ module OmniRegion
       end
     end
 
-    def full_name_of_division(division_code, options={})
+    def full_name_of_division(division_code, options = {})
       division = OmniRegion::Division.find_by(code: division_code)
       name = division&.name.to_s
-      seperator = options[:seperator] || '-'
+      seperator = options[:seperator] || "-"
       division&.parent&.parent ? name.prepend("#{full_name_of_division(division.parent.code, options)}#{seperator}") : name
     end
   end

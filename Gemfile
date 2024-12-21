@@ -1,15 +1,31 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Declare your gem's dependencies in omni_region.gemspec.
-# Bundler will treat runtime dependencies like base dependencies, and
-# development dependencies will be added by default to the :development group.
 gemspec
 
-# Declare any dependencies that are still in development here instead of in
-# your gemspec. These might include edge Rails or gems from your path or
-# Git. Remember to move these dependencies to your gemspec before releasing
-# your gem to rubygems.org.
+gem "debug"
+gem "gem-ctags"
+gem "rubocop"
+gem "rubocop-capybara", require: false
+gem "rubocop-erb", "~> 0.3"
+gem "rubocop-minitest"
+gem "rubocop-performance"
+gem "rubocop-rails"
+gem "rubocop-rake"
 
-# To use a debugger
-# gem 'byebug', group: [:development, :test]
+gem "guard"
+gem "guard-bundler"
+gem "guard-minitest"
+gem "guard-rubocop"
+gem "minitest"
+gem "minitest-reporters"
+gem "mocha"
+gem "pg"
+gem "propshaft"
+gem "puma"
+
+group :test do
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webmock"
+end

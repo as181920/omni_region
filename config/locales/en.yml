@@ -2,6 +2,7 @@
 en:
   omni_region:
     engine: "Omni region"
+    welcome: "Welcome"
     search: "Search"
     all_regions: "All regions"
     nationwide: "Nationwide"

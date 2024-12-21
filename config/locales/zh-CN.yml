@@ -2,6 +2,7 @@
 zh-CN:
   omni_region:
     engine: "通用地址库"
+    welcome: "Welcome"
     search: "检索"
     all_regions: "所有地区"
     nationwide: "全国"

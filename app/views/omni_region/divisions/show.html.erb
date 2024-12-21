@@ -7,7 +7,7 @@
 
 <p>
   <strong>Parent:</strong>
-  <%= link_to @division.parent.to_s, divisions_path(q: {parent_id_eq: @division.parent_id}) %>
+  <%= link_to @division.parent.to_s, divisions_path(q: { parent_id_eq: @division.parent_id }) %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Children</strong>
-  <%= link_to @division.children.count, divisions_path(q: {parent_id_eq: @division.id}) %>
+  <%= link_to @division.children.count, divisions_path(q: { parent_id_eq: @division.id }) %>
 </p>
 
-<%= link_to 'Back', divisions_path %>
+<%= link_to "Back", divisions_path %>

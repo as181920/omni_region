@@ -1,6 +1,6 @@
 module OmniRegion
   class DivisionsController < ApplicationController
-    before_action :set_division, only: [:show, :edit, :update, :destroy]
+    before_action :set_division, only: %i[show]
 
     def index
       @q = Division
@@ -9,8 +9,7 @@ module OmniRegion
       @divisions = @q.result.page(params[:page]).per(params[:per] || 25)
     end
 
-    def show
-    end
+    def show; end
 
     private
 

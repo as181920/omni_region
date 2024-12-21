@@ -7,6 +7,7 @@ module OmniRegion
     end
 
     private
+
       def set_division
         @division = Division.find_by(code: params[:division_code])
       end

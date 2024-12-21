@@ -7,7 +7,7 @@ module OmniRegion
     isolate_namespace OmniRegion
 
     initializer :append_migrations do |app|
-      unless app.root.to_s.match root.to_s
+      unless app.root == root.join("test/dummy")
         config.paths["db/migrate"].expanded.each do |expanded_path|
           app.config.paths["db/migrate"] << expanded_path
         end
@@ -20,7 +20,8 @@ module OmniRegion
       g.stylesheets     false
       g.javascripts     false
       g.helper          false
-      g.test_framework  false
+      g.test_framework  :test_unit
+      g.skip_routes     true
     end
   end
 end

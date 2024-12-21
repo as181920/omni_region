@@ -1,0 +1,19 @@
+default: &default
+  SECRET_KEY_BASE: "FILLER"
+  CDN_HOST: "http://dev-3025.dd-life.com"
+  remote_ip_whitelist: "127.0.0.1"
+  action_mailer_smtp_address: "smtp.example.com"
+  action_mailer_smtp_port: 25
+  action_mailer_smtp_domain: "example.com"
+  action_mailer_smtp_user_name: "user name"
+  action_mailer_smtp_password: "pwd"
+  app_frontend_base_url: "http://dev-3025.dd-life.com"
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

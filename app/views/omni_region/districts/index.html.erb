@@ -6,7 +6,7 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <%= search_form_for @q, url: url_for(), class: "common_search_form form-inline" do |form| %>
+  <%= search_form_for @q, url: url_for, class: "common_search_form form-inline" do |form| %>
     <div class="form-group">
       <label for="q_code_eq">Code</label>
       <%= form.search_field :code_eq, class: "form-control", placeholder: "" %>

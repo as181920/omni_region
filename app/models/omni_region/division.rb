@@ -1,6 +1,6 @@
 module OmniRegion
   class Division < ApplicationRecord
-    validates_presence_of :type, :name
+    validates :type, :name, presence: true
     validates :code, presence: true, uniqueness: true
 
     def self.ransackable_attributes(_auth_object = nil)

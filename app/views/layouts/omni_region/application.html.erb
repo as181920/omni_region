@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Omni region</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <title><%= content_for?(:title) ? yield(:title) : t("omni_region.engine") %></title>
+    <%= yield(:head_additions) if content_for?(:head_additions) %>
   </head>
   <body>
+
+    <%= yield(:custom_flash_messages) if content_for?(:custom_flash_messages) %>
 
     <%= yield %>
 
