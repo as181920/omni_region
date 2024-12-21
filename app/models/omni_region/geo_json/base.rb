@@ -10,11 +10,11 @@ module OmniRegion
             Rails.logger.error "#{name} find #{e.class}: #{e.message}"
             nil
           end
-          Rails.logger.info "#{name} detected(#{longitude},#{latitude}): #{detected[:name]} #{detected[:gb]}"
+          Rails.logger.info "#{name} detected(#{longitude},#{latitude}): #{detected&.properties.to_json}"
 
           return {} if detected.blank?
 
-          { name.demodulize.underscore.to_sym => detected[:name], division_code: detected[:gb].sub(/^156/, "") }.compact_blank
+          { name.demodulize.underscore.to_sym => detected[:name], division_code: detected[:gb]&.sub(/^156/, "") }.compact_blank
         end
       end
     end
