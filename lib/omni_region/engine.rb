@@ -1,5 +1,6 @@
 require "jbuilder"
 require "ransack"
+require "rgeo-geojson"
 
 module OmniRegion
   class Engine < ::Rails::Engine

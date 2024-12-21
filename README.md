@@ -2,6 +2,13 @@
 通用区划信息(Rails engine)
 
 ## Installation
+
+Install dependencies make sure RGeo::Geos.capi_supported?
+
+```bash
+apt install libgeos++-dev libgeos3.10.2 libgeos-c1v5
+```
+
 Add this line to your application's Gemfile:
 
 ```ruby
