@@ -1,0 +1,4 @@
+one:
+  type: "OmniRegion::Country"
+  code: "156"
+  name: "中国"
