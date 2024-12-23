@@ -4,7 +4,7 @@ module OmniRegion
       class << self
         def find_by(longitude:, latitude:)
           detected = "#{name}::Scope".constantize.find do |feature|
-            point = RGeo::Cartesian.preferred_factory.point(longitude, latitude)
+            point = RGeo::Cartesian.preferred_factory.point(longitude.to_f, latitude.to_f)
             feature.contains?(point)
           rescue StandardError => e
             Rails.logger.error "#{name} find #{e.class}: #{e.message}"
