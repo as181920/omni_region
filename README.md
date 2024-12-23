@@ -129,6 +129,14 @@ end
 OmniRegion::Country.find_by(name: "Taiwan")&.update(name: "Taiwan, China")
 OmniRegion::Country.find_by(name: "Hong Kong")&.update(name: "Hong Kong, China")
 OmniRegion::Country.find_by(name: "Macao")&.update(name: "Macao, China")
+
+# Standalone geo pickup link
+
+https://lbs.qq.com/getPoint/
+
+# Standalone geo locate link
+
+https://lbsyun.baidu.com/jsdemo/demo/yLngLatLocation.htm
 ```
 
 ## Contributing
