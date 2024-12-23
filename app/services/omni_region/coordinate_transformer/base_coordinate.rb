@@ -7,8 +7,8 @@ module OmniRegion
       attr_reader :longitude, :latitude
 
       def initialize(longitude: nil, latitude: nil)
-        @longitude = longitude
-        @latitude = latitude
+        @longitude = longitude.to_f
+        @latitude = latitude.to_f
       end
 
       def out_of_china?
