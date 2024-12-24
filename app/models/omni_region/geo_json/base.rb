@@ -2,10 +2,12 @@ module OmniRegion
   module GeoJson
     class Base
       class << self
-        def find_by(longitude:, latitude:)
+        def find_by(longitude:, latitude:) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
           detected = "#{name}::Scope".constantize.find do |feature|
-            point = RGeo::Cartesian.preferred_factory.point(longitude.to_f, latitude.to_f)
-            feature.contains?(point)
+            feature.contains? RGeo::Cartesian.preferred_factory.point(longitude.to_f, latitude.to_f)
+          rescue RGeo::Error::InvalidGeometry => e
+            Rails.logger.error "#{name} find #{e.class}: #{e.message}, retry by make_valid"
+            feature.make_valid.contains? RGeo::Cartesian.preferred_factory.point(longitude.to_f, latitude.to_f)
           rescue StandardError => e
             Rails.logger.error "#{name} find #{e.class}: #{e.message}"
             nil
