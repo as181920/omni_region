@@ -1,57 +1,30 @@
-require:
-  - rubocop-rails
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
+plugins:
   - rubocop-erb
   - rubocop-rake
   - rubocop-minitest
-  - rubocop-performance
-  - rubocop-capybara
 
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.4
   NewCops: enable
   Exclude:
-    - test/dummy/db/schema.rb
-
-Naming/VariableNumber:
-  Enabled: false
-
-Style/Documentation:
-  # Skips checking to make sure top level modules / classes have a comment.
-  Enabled: false
+    - bin/bundle
+    - db/schema.rb
 
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
 
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/NumericLiterals:
-  Enabled: false
-
 Style/Alias:
   EnforcedStyle: prefer_alias_method
 
-Style/ClassAndModuleChildren:
-  Enabled: false
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: no_space
 
 Layout/LineLength:
   Max: 150
-
-Layout/ArgumentAlignment:
-  EnforcedStyle: with_fixed_indentation
-
-Layout/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Layout/IndentationConsistency:
-  EnforcedStyle: indented_internal_methods
-
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
 
 Metrics/AbcSize:
   Max: 35
@@ -65,7 +38,6 @@ Metrics/PerceivedComplexity:
 Metrics/MethodLength:
   Max: 10
   Exclude:
-    - "test/dummy/db/migrate/*.rb"
     - "db/migrate/*.rb"
 
 Metrics/BlockLength:
@@ -76,19 +48,3 @@ Metrics/BlockLength:
     - "*.gemspec"
     - "config/routes.rb"
     - "Gemfile"
-
-Metrics/ModuleLength:
-  Exclude:
-    - "**/concerns/**/*.rb"
-
-Metrics/ClassLength:
-  Exclude:
-    - "test/**/*.rb"
-
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - "**/concerns/**/*.rb"
-
-Rails/SkipsModelValidations:
-  Exclude:
-    - "test/**/*.rb"
