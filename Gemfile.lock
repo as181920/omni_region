@@ -122,6 +122,9 @@ GEM
     erubi (1.13.1)
     ffi (1.17.2-x86_64-linux-gnu)
     formatador (1.1.1)
+    fuubar (2.5.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     guard (2.19.1)
@@ -283,6 +286,9 @@ GEM
     rgeo-geojson (2.2.0)
       multi_json (~> 1.15)
       rgeo (>= 1.0.0)
+    rspec-core (3.13.5)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.4)
     rubocop (1.79.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -363,6 +369,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   debug
+  fuubar
   guard
   guard-bundler
   guard-minitest

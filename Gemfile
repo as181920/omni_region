@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 gem "debug"
+gem "fuubar"
 gem "rubocop"
 gem "rubocop-erb"
 gem "rubocop-minitest"
