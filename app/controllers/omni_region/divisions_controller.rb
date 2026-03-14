@@ -4,7 +4,7 @@ module OmniRegion
 
     def index
       @q = Division
-        .then { |scope| params.dig(:q, :s).present? ? scope : scope.order(name: :asc) }
+        .then { |scope| params[:q].is_a?(ActionController::Parameters) && params[:q][:s].present? ? scope : scope.order(name: :asc) }
         .ransack(params[:q])
       @divisions = @q.result.page(params[:page]).per(params[:per] || 25)
     end
