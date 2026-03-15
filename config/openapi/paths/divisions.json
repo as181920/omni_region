@@ -1,0 +1,60 @@
+{
+  "get": {
+    "tags": ["Divisions"],
+    "summary": "List divisions",
+    "operationId": "omniRegionDivisionsIndex",
+    "parameters": [
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "per",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "q[parent_code_eq]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Filter by parent division code."
+      },
+      {
+        "name": "q[code_eq]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" }
+      },
+      {
+        "name": "q[name_cont]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" }
+      },
+      {
+        "name": "q[s]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Ransack sort expression, e.g. `name asc`."
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Division array",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "../components/schemas/division_detail.json" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

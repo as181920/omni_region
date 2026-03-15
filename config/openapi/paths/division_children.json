@@ -1,0 +1,28 @@
+{
+  "get": {
+    "tags": ["Divisions"],
+    "summary": "List direct children of a division",
+    "operationId": "omniRegionDivisionChildrenIndex",
+    "parameters": [
+      {
+        "name": "division_code",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Children array",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "../components/schemas/division.json" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

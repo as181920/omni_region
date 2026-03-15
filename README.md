@@ -18,6 +18,11 @@ gem 'omni_region', git: "git@github.com:as181920/omni_region.git", branch: "mast
 ## Usage
 source data: https://github.com/modood/Administrative-divisions-of-China
 
+### OpenAPI docs
+
+- `GET /omni_region/api-docs`
+- `GET /omni_region/api-docs/openapi.json`
+
 ### Load china administrative divisions data:
 
 ```ruby

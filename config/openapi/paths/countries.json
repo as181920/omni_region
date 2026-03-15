@@ -1,0 +1,41 @@
+{
+  "get": {
+    "tags": ["Countries"],
+    "summary": "List countries",
+    "operationId": "listCountries",
+    "parameters": [
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "per",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "q[s]",
+        "in": "query",
+        "required": false,
+        "description": "Ransack sort, e.g. name asc",
+        "schema": { "type": "string" }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Country list",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "../components/schemas/division.json" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

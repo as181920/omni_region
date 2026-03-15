@@ -1,0 +1,48 @@
+{
+  "get": {
+    "tags": ["Cities"],
+    "summary": "List cities",
+    "operationId": "omniRegionCitiesIndex",
+    "parameters": [
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "per",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "q[parent_code_eq]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Filter by province code."
+      },
+      {
+        "name": "q[s]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Ransack sort expression, e.g. `name asc`."
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "City array",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "../components/schemas/division.json" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

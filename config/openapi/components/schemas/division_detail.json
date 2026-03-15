@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": ["string", "integer"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "parent_id": {
+      "type": ["integer", "null"]
+    },
+    "parent_code": {
+      "type": ["string", "integer", "null"]
+    }
+  },
+  "required": ["code", "name", "type"]
+}

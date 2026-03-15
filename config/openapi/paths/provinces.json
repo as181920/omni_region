@@ -1,0 +1,41 @@
+{
+  "get": {
+    "tags": ["Provinces"],
+    "summary": "List provinces",
+    "operationId": "omniRegionProvincesIndex",
+    "parameters": [
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "per",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "q[s]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Ransack sort expression, e.g. `name asc`."
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Province array",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "../components/schemas/division.json" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

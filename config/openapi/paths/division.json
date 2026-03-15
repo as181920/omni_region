@@ -1,0 +1,25 @@
+{
+  "get": {
+    "tags": ["Divisions"],
+    "summary": "Show division",
+    "operationId": "omniRegionDivisionShow",
+    "parameters": [
+      {
+        "name": "code",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Division detail",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "../components/schemas/division_detail.json" }
+          }
+        }
+      }
+    }
+  }
+}

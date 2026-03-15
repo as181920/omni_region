@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "jbuilder"
+  spec.add_dependency "kaminari"
   spec.add_dependency "rails", ">= 6.1"
   spec.add_dependency "ransack"
   spec.add_dependency "rgeo"

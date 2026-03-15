@@ -1,0 +1,48 @@
+{
+  "get": {
+    "tags": ["Districts"],
+    "summary": "List districts",
+    "operationId": "omniRegionDistrictsIndex",
+    "parameters": [
+      {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "per",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer", "minimum": 1 }
+      },
+      {
+        "name": "q[parent_code_eq]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Filter by city code."
+      },
+      {
+        "name": "q[s]",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Ransack sort expression, e.g. `name asc`."
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "District array",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "../components/schemas/division.json" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

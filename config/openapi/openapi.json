@@ -1,0 +1,23 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "OmniRegion API",
+    "version": "2026-03-15",
+    "description": "Region lookup APIs for divisions, countries, provinces, cities and districts."
+  },
+  "servers": [
+    {
+      "url": "/omni_region",
+      "description": "Mounted path in host application"
+    }
+  ],
+  "paths": {
+    "/divisions": { "$ref": "./paths/divisions.json" },
+    "/divisions/{code}": { "$ref": "./paths/division.json" },
+    "/divisions/{division_code}/children": { "$ref": "./paths/division_children.json" },
+    "/countries": { "$ref": "./paths/countries.json" },
+    "/provinces": { "$ref": "./paths/provinces.json" },
+    "/cities": { "$ref": "./paths/cities.json" },
+    "/districts": { "$ref": "./paths/districts.json" }
+  }
+}

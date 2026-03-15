@@ -1,5 +1,8 @@
 module OmniRegion
   class Division < ApplicationRecord
+    belongs_to :parent, class_name: "OmniRegion::Division", optional: true
+    has_many :children, class_name: "OmniRegion::Division", foreign_key: :parent_id, inverse_of: :parent, dependent: nil
+
     validates :type, :name, presence: true
     validates :code, presence: true, uniqueness: true
 
@@ -17,14 +20,6 @@ module OmniRegion
 
     def to_s
       name
-    end
-
-    def parent
-      Division.find_by(id: parent_id)
-    end
-
-    def children
-      Division.where(parent_id: id)
     end
   end
 end

@@ -1,13 +1,12 @@
 require "test_helper"
+require "securerandom"
 
 module OmniRegion
   class DivisionTest < ActiveSupport::TestCase
     test "should create division" do
-      Division.find_by(code: "156")&.destroy
-
       division = Division.new \
         type: "OmniRegion::Country",
-        code: 156,
+        code: "test_#{SecureRandom.hex(4)}",
         name: "China"
 
       assert division.save

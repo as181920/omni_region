@@ -1,4 +1,5 @@
 require "jbuilder"
+require "kaminari"
 require "ransack"
 require "rgeo-geojson"
 
