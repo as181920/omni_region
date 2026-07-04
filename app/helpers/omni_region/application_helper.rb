@@ -58,11 +58,25 @@ module OmniRegion
       end
     end
 
+    def division_children_select_data(target_selector: nil, scope_selector: nil, action: "form#filterDependentSelect")
+      {
+        action: action,
+        form_dependent_options_url_param: division_children_url_template
+      }.tap do |data|
+        data[:form_dependent_target_selector_param] = target_selector if target_selector.present?
+        data[:form_dependent_scope_selector_param] = scope_selector if scope_selector.present?
+      end
+    end
+
     def full_name_of_division(division_code, options = {})
       division = OmniRegion::Division.find_by(code: division_code)
       name = division&.name.to_s
       seperator = options[:seperator] || "-"
       division&.parent&.parent ? name.prepend("#{full_name_of_division(division.parent.code, options)}#{seperator}") : name
+    end
+
+    def division_children_url_template
+      omni_region.division_children_path(":value", format: :json)
     end
   end
 end
