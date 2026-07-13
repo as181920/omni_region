@@ -16,6 +16,7 @@ module OmniRegion
 
       assert_response :success
       assert_equal "application/json", @response.media_type
+      assert_equal "3.1.2", @response.parsed_body["openapi"]
     end
 
     test "should get nested openapi file" do
