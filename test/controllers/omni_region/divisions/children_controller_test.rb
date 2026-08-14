@@ -23,5 +23,11 @@ module OmniRegion
       assert_includes child_codes, city_nanjing.code
       assert_not_includes child_codes, district_xuanwu.code
     end
+
+    test "should return not found for an unknown parent division" do
+      get division_children_path("unknown", format: :json)
+
+      assert_response :not_found
+    end
   end
 end

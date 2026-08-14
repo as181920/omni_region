@@ -20,5 +20,11 @@ module OmniRegion
       assert_response :success
       assert_includes @response.body, province_jiangsu.code
     end
+
+    test "should return not found for an unknown division" do
+      get division_path("unknown")
+
+      assert_response :not_found
+    end
   end
 end
