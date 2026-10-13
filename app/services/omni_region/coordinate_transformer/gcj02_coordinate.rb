@@ -1,27 +1,29 @@
 module OmniRegion
   module CoordinateTransformer
     class Gcj02Coordinate < BaseCoordinate
-      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Lint/AmbiguousOperatorPrecedence
+      TOLERANCE = 1e-9
+      MAX_ITERATIONS = 20
+      BD_FACTOR = Math::PI * 3000 / 180
+
       def to_wgs84
         return { longitude:, latitude: } if out_of_china?
 
-        # 计算偏移
-        d_lat = transform_lat(longitude - 105.0, latitude - 35.0)
-        d_lng = transform_lng(longitude - 105.0, latitude - 35.0)
-        rad_lat = latitude / 180.0 * Math::PI
-        magic = Math.sin(rad_lat)
-        magic = 1 - OFFSET * magic * magic
-        sqrt_magic = Math.sqrt(magic)
-        d_lat = (d_lat * 180.0) / ((AXIS * (1 - OFFSET)) / (magic * sqrt_magic) * Math::PI)
-        d_lng = (d_lng * 180.0) / (AXIS / sqrt_magic * Math.cos(rad_lat) * Math::PI)
+        estimate = { longitude:, latitude: }
+        MAX_ITERATIONS.times do
+          projected = Wgs84Coordinate.new(**estimate).to_gcj02
+          d_lng, d_lat = projected[:longitude] - longitude, projected[:latitude] - latitude
+          return estimate if [d_lng.abs, d_lat.abs].max <= TOLERANCE
 
-        # 还原 CGCS2000 坐标
-        mg_lat = latitude - d_lat
-        mg_lng = longitude - d_lng
-        { longitude: mg_lng, latitude: mg_lat }
+          estimate = { longitude: estimate[:longitude] - d_lng, latitude: estimate[:latitude] - d_lat }
+        end
+        raise ArgumentError, "Coordinate inverse conversion did not converge"
       end
-      alias_method :to_cgcs2000, :to_wgs84
-      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize, Lint/AmbiguousOperatorPrecedence
+
+      def to_bd09
+        radius = Math.hypot(longitude, latitude) + 0.00002 * Math.sin(latitude * BD_FACTOR)
+        angle = Math.atan2(latitude, longitude) + 0.000003 * Math.cos(longitude * BD_FACTOR)
+        { longitude: radius * Math.cos(angle) + 0.0065, latitude: radius * Math.sin(angle) + 0.006 }
+      end
     end
   end
 end

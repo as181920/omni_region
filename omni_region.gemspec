@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "jbuilder"
   spec.add_dependency "kaminari"
-  spec.add_dependency "rails", ">= 6.1"
+  spec.add_dependency "rails", ">= 8.1"
   spec.add_dependency "ransack"
   spec.add_dependency "rgeo"
   spec.add_dependency "rgeo-geojson"

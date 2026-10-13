@@ -15,12 +15,12 @@ if ActiveSupport::TestCase.respond_to?(:fixture_paths=)
   ActiveSupport::TestCase.fixtures :all
 end
 
-require "minitest/mock"
 require "mocha/minitest"
 require "webmock/minitest"
 require "debug"
 
 require "minitest/reporters"
+Minitest.load :minitest_reporter
 Minitest::Reporters.use!
 
 ActiveRecord.verify_foreign_keys_for_fixtures = false # Temporarily handle RuntimeError: Foreign key violations found in your fixture data.

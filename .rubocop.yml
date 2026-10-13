@@ -48,3 +48,8 @@ Metrics/BlockLength:
     - "*.gemspec"
     - "config/routes.rb"
     - "Gemfile"
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: true
+  DefLikeMacros:
+    - test
