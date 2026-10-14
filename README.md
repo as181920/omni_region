@@ -18,6 +18,12 @@ gem 'omni_region', git: "git@github.com:as181920/omni_region.git", branch: "mast
 ## Usage
 source data: https://github.com/modood/Administrative-divisions-of-China
 
+### GeoJSON 坐标约定
+
+`lib/data/cn_provinces.geojson`、`cn_cities.geojson` 与 `cn_districts.geojson` 均显式声明 `urn:ogc:def:crs:EPSG::4490`，即 CGCS2000，并非 GCJ02。数组坐标顺序为经度、纬度；`GeoJson::*#find_by` 直接进行边界包含判断，不自动转换坐标。
+
+腾讯／高德选点的 GCJ02 坐标需要先去除偏移，再查询这些边界。现有消费方使用 `Gcj02Coordinate#to_wgs84` 的结果近似匹配 CGCS2000 边界；这不是严格的 WGS84 → CGCS2000 基准转换，不能据此承诺边界附近的精确归属。上述坐标系结论来自文件声明，原始边界来源、测绘精度和时效尚未在仓库中完整记录。
+
 ### OpenAPI docs
 
 - `GET /omni_region/api-docs`
